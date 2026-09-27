@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sooo... 👀</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+
+    font-family: "Trebuchet MS", Arial, sans-serif;
+
+    color: #4b303b;
+
+    background:
+        radial-gradient(circle at 15% 15%,
+            rgba(255,255,255,.95),
+            transparent 24%),
+
+        radial-gradient(circle at 85% 85%,
+            rgba(255,210,225,.55),
+            transparent 30%),
+
+        linear-gradient(
+            135deg,
+            #ffe8ef,
+            #fff8fb
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =====================================================
+   BACKGROUND PARTICLES
+===================================================== */
+
+#particles {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+
+    bottom: -30px;
+
+    opacity: 0;
+
+    animation:
+        rise linear forwards;
+}
+
+@keyframes rise {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(.7);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .45;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            scale(1.15);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+    width: min(93vw, 560px);
+
+    max-height: 92vh;
+
+    overflow: hidden;
+
+    padding: 34px 27px;
+
+    background:
+        rgba(255,255,255,.96);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 70px rgba(90,45,65,.15),
+        0 5px 20px rgba(90,45,65,.08);
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 2;
+
+    animation:
+        cardIn .6s ease;
+}
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px)
+            scale(.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   SCREEN
+===================================================== */
+
+.screen {
+    animation:
+        screenIn .38s ease;
+}
+
+@keyframes screenIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+.emoji {
+    font-size: 52px;
+
+    margin-bottom: 9px;
+
+    animation:
+        floatingEmoji
+        2.4s
+        ease-in-out
+        infinite;
+}
+
+@keyframes floatingEmoji {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-6px);
+    }
+}
+
+h1 {
+    font-size: 32px;
+
+    line-height: 1.2;
+
+    margin-bottom: 16px;
+}
+
+h2 {
+    font-size: 27px;
+
+    line-height: 1.25;
+
+    margin-bottom: 16px;
+}
+
+p {
+    font-size: 17px;
+
+    line-height: 1.65;
+
+    color: #765966;
+}
+
+.question {
+    margin: 23px 0;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 11px;
+
+    margin-top: 20px;
+}
+
+button {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 999px;
+
+    padding: 14px 20px;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform .14s ease,
+        box-shadow .14s ease,
+        filter .14s ease;
+
+    -webkit-tap-highlight-color: transparent;
+
+    user-select: none;
+}
+
+button:hover {
+
+    transform:
+        translateY(-2px)
+        scale(1.015);
+
+    filter:
+        brightness(1.04);
+}
+
+button:active {
+
+    transform:
+        scale(.94);
+}
+
+.option-btn {
+
+    color: #5b404b;
+
+    background:
+        #f7e5ec;
+
+    box-shadow:
+        0 4px 12px
+        rgba(95,55,72,.06);
+}
+
+.option-btn:hover {
+
+    box-shadow:
+        0 9px 20px
+        rgba(95,55,72,.12);
+}
+
+.main-btn {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5d91,
+            #ff83aa
+        );
+
+    box-shadow:
+        0 9px 22px
+        rgba(255,93,145,.24);
+}
+
+.money-btn {
+
+    color: #604a2c;
+
+    background:
+        #ead9b9;
+}
+
+
+/* =====================================================
+   MEMORY
+===================================================== */
+
+.memory-box {
+
+    margin: 20px 0;
+
+    padding: 23px;
+
+    background:
+        #fff2f6;
+
+    border-radius: 21px;
+
+    font-size: 18px;
+
+    line-height: 1.65;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.memory-label {
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    color: #b17991;
+
+    margin-bottom: 11px;
+}
+
+
+/* =====================================================
+   FIND THE BITCH GAME
+===================================================== */
+
+.game-intro {
+
+    margin-bottom: 20px;
+}
+
+.ladies {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.lady {
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    padding: 0;
+
+    background:
+        #fff;
+
+    border:
+        3px solid
+        transparent;
+
+    box-shadow:
+        0 5px 16px
+        rgba(80,40,60,.10);
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        border-color .18s ease;
+
+    cursor: pointer;
+
+    width: 100%;
+}
+
+.lady:hover {
+
+    transform:
+        translateY(-6px)
+        scale(1.02);
+
+    box-shadow:
+        0 12px 25px
+        rgba(80,40,60,.18);
+}
+
+.lady:active {
+
+    transform:
+        scale(.95);
+}
+
+.lady img {
+
+    width: 100%;
+
+    height: 230px;
+
+    object-fit: cover;
+
+    display: block;
+
+    pointer-events: none;
+}
+
+.lady-caption {
+
+    padding: 10px 5px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color:
+        #604552;
+}
+
+.game-result {
+
+    min-height: 95px;
+
+    margin-top: 22px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+    font-weight: 900;
+
+    color: #ff4d83;
+
+    line-height: 1.2;
+
+    animation:
+        resultPop
+        .45s
+        ease;
+}
+
+.game-sub {
+
+    font-size: 14px;
+
+    color: #8b6574;
+
+    margin-top: 8px;
+}
+
+@keyframes resultPop {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.5);
+    }
+
+    65% {
+        transform:
+            scale(1.12);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+}
+
+.selected {
+
+    border-color:
+        #ff5d91;
+
+    transform:
+        scale(1.04);
+
+    box-shadow:
+        0 0 0 5px
+        rgba(255,93,145,.12);
+}
+
+
+/* =====================================================
+   SECRET REVEAL
+===================================================== */
+
+.reveal-area {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 240px;
+
+    margin-top: 18px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(137,124,255,.08),
+            transparent 60%
+        );
+
+    touch-action: none;
+}
+
+
+/*
+The button itself can never receive
+the pointer.
+*/
+
+#revealBtn {
+
+    position: absolute;
+
+    width: 250px;
+
+    padding: 15px 20px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6254e8,
+            #897cff
+        );
+
+    box-shadow:
+        0 12px 30px
+        rgba(98,84,232,.30);
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    pointer-events: none;
+
+    white-space: nowrap;
+}
+
+
+/* Custom hidden-eye icon */
+
+.eye-hidden {
+
+    display: inline-block;
+
+    width: 19px;
+
+    height: 12px;
+
+    border:
+        2px solid white;
+
+    border-radius:
+        80% 20% 80% 20%;
+
+    transform:
+        rotate(-45deg);
+
+    margin-right: 7px;
+
+    position: relative;
+
+    top: 2px;
+}
+
+.eye-hidden::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 2px;
+
+    height: 22px;
+
+    background: white;
+
+    left: 7px;
+
+    top: -7px;
+
+    transform:
+        rotate(90deg);
+
+    border-radius: 2px;
+}
+
+
+/* =====================================================
+   PAYMENT
+===================================================== */
+
+.message-box {
+
+    margin: 20px 0;
+
+    padding: 23px;
+
+    border-radius: 21px;
+
+    background:
+        #fff3f6;
+}
+
+.big {
+
+    font-size: 58px;
+
+    margin-bottom: 10px;
+}
+
+
+/* =====================================================
+   SPARKS
+===================================================== */
+
+.spark {
+
+    position: fixed;
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 20;
+
+    animation:
+        spark
+        .55s
+        ease-out
+        forwards;
+}
+
+@keyframes spark {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--dx),
+                var(--dy)
+            )
+            scale(0);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 500px) {
+
+    .card {
+
+        width: 94vw;
+
+        padding:
+            29px 18px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .question {
+        font-size: 19px;
+    }
+
+    .ladies {
+
+        gap: 6px;
+    }
+
+    .lady img {
+
+        height: 190px;
+    }
+
+    .lady-caption {
+
+        font-size: 11px;
+
+        padding:
+            8px 2px;
+    }
+
+    #revealBtn {
+
+        width: 220px;
+
+        font-size: 15px;
+    }
+
+    .reveal-area {
+
+        height: 250px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div id="particles"></div>
+
+
+<div class="card">
+
+
+<!-- =====================================================
+     SCREEN 1
+===================================================== -->
+
+<div class="screen" id="screen1">
+
+    <div class="emoji">👀</div>
+
+    <h1>Sooo...</h1>
+
+    <p>
+
+        You asked my friend for my Instagram...
+
+        <br><br>
+
+        and apparently you wanted to talk
+        to me about something.
+
+        <br><br>
+
+        I got curious. 😂
+
+        <br><br>
+
+        So I made this unnecessarily complicated.
+
+    </p>
+
+
+    <div class="buttons">
+
+        <button
+            class="main-btn"
+            onclick="go(2,this)">
+
+            Okay... let's see 👀
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCREEN 2
+===================================================== -->
+
+<div class="screen hidden" id="screen2">
+
+    <div class="emoji">🤨</div>
+
+    <h2>First question</h2>
+
+    <div class="question">
+
+        When you asked for my username...
+
+        <br>
+
+        what were you actually thinking?
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            class="option-btn"
+            onclick="go(3,this)">
+
+            I wanted to talk
+
+        </button>
+
+
+        <button
+            class="option-btn"
+            onclick="go(3,this)">
+
+            I was curious 👀
+
+        </button>
+
+
+        <button
+            class="option-btn"
+            onclick="go(3,this)">
+
+            That's classified 🔐
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCREEN 3
+===================================================== -->
+
+<div class="screen hidden" id="screen3">
+
+    <div class="emoji">🌙</div>
+
+    <h2>Okay... memory check.</h2>
+
+
+    <div class="memory-box">
+
+        <div class="memory-label">
+            Memory #1
+        </div>
+
+        Remember that moonlight night
+        on the hotel rooftop...
+
+        <br><br>
+
+        just hugging and saying goodbye?
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            class="option-btn"
+            onclick="go(4,this)">
+
+            Of course I remember ❤️
+
+        </button>
+
+
+        <button
+            class="option-btn"
+            onclick="go(4,this)">
+
+            Stop 😭
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCREEN 4
+===================================================== -->
+
+<div class="screen hidden" id="screen4">
+
+    <div class="emoji">🌧️</div>
+
+    <h2>And then there was this...</h2>
+
+
+    <div class="memory-box">
+
+        <div class="memory-label">
+            Memory #2
+        </div>
+
+        That time it rained and we started
+        jumping in the puddles on the street
+        like we had absolutely nothing
+        to care about. 😂🌧️
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            class="option-btn"
+            onclick="go(5,this)">
+
+            We were crazy 😂
+
+        </button>
+
+
+        <button
+            class="option-btn"
+            onclick="go(5,this)">
+
+            I remember 😭
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCREEN 5 — THE UNEXPECTED GAME
+===================================================== -->
+
+<div class="screen hidden" id="screen5">
+
+    <div class="emoji">🧐</div>
+
+    <h2>Wait...</h2>
+
+    <div class="game-intro">
+
+        <p>
+
+            Before I give you
+            what you came looking for...
+
+            <br><br>
+
+            there's one very important question.
+
+        </p>
+
+
+        <div class="question">
+
+            Find the bitch. 😂
+
+        </div>
+
+    </div>
+
+
+    <div class="ladies">
+
+
+        <!-- LADY 1 -->
+
+        <button
+            class="lady"
+            onclick="chooseLady(this)">
+
+            <img
+                src="https://images.pexels.com/photos/15504963/pexels-photo-15504963.jpeg?auto=compress&cs=tinysrgb&w=700"
+                alt="Woman in red dress">
+
+            <span class="lady-caption">
+                Candidate 1
+            </span>
+
+        </button>
+
+
+        <!-- LADY 2 -->
+
+        <button
+            class="lady"
+            onclick="chooseLady(this)">
+
+            <img
+                src="https://images.pexels.com/photos/9167099/pexels-photo-9167099.jpeg?auto=compress&cs=tinysrgb&w=700"
+                alt="Woman in brown dress">
+
+            <span class="lady-caption">
+                Candidate 2
+            </span>
+
+        </button>
+
+
+        <!-- LADY 3 -->
+
+        <button
+            class="lady"
+            onclick="chooseLady(this)">
+
+            <img
+                src="https://images.pexels.com/photos/9165014/pexels-photo-9165014.jpeg?auto=compress&cs=tinysrgb&w=700"
+                alt="Woman in casual jeans">
+
+            <span class="lady-caption">
+                Candidate 3
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="gameResult"
+        class="game-result">
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCREEN 6 — REVEAL
+===================================================== -->
+
+<div class="screen hidden" id="screen6">
+
+    <div class="emoji">🔐</div>
+
+    <h2>Okay...</h2>
+
+
+    <p>
+
+        You survived the investigation.
+
+        <br><br>
+
+        So here we go.
+
+        <br><br>
+
+        <strong>
+            This time I'm actually
+            giving it to you. 👀
+        </strong>
+
+    </p>
+
+
+    <div
+        class="reveal-area"
+        id="revealArea">
+
+
+        <button
+            id="revealBtn">
+
+            <span class="eye-hidden"></span>
+
+            Show IG username
+
+        </button>
+
+
+    </div>
+
+
+    <div class="buttons">
+
+
+        <button
+            class="option-btn"
+            onclick="giveUp(this)">
+
+            Give up 😭
+
+        </button>
+
+
+        <button
+            class="money-btn"
+            onclick="go(7,this)">
+
+            Pay to see 💰
+
+        </button>
+
+    </div>
+
+
+    <div class="small-note">
+
+        You can try. 😂
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCREEN 7 — PAYMENT
+===================================================== -->
+
+<div class="screen hidden" id="screen7">
+
+    <div class="big">💳</div>
+
+    <h2>PAYMENT PORTAL</h2>
+
+
+    <div class="message-box">
+
+        <p>
+            Price for viewing the
+            highly classified username:
+        </p>
+
+        <br>
+
+        <p>
+            <strong>
+                $0.00
+            </strong>
+        </p>
+
+        <br>
+
+        <p>
+            Very affordable.
+            Don't embarrass yourself. 😂
+        </p>
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            class="money-btn"
+            onclick="go(8,this)">
+
+            Attempt payment 💳
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCREEN 8 — BROKE
+===================================================== -->
+
+<div class="screen hidden" id="screen8">
+
+    <div class="big">💀</div>
+
+    <h2>
+        TRANSACTION DECLINED
+    </h2>
+
+
+    <div class="message-box">
+
+        <p>
+            Payment could not be completed.
+        </p>
+
+        <br>
+
+        <p>
+            <strong>
+                Reason:
+            </strong>
+        </p>
+
+        <br>
+
+        <p
+            style="
+                font-size:22px;
+                font-weight:bold;
+            ">
+
+            Bro...
+
+            <br>
+
+            you're broke. 😭💀
+
+        </p>
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            class="main-btn"
+            onclick="go(9,this)">
+
+            That's actually rude 😂
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCREEN 9
+===================================================== -->
+
+<div class="screen hidden" id="screen9">
+
+    <div class="big">😂</div>
+
+    <h2>
+        Okay, okay.
+    </h2>
+
+
+    <p>
+
+        You really thought I was
+        going to make it that easy?
+
+        <br><br>
+
+        Anyway...
+
+        <br><br>
+
+        You said you wanted to talk
+        to me about something.
+
+    </p>
+
+
+    <div class="buttons">
+
+        <button
+            class="main-btn"
+            onclick="go(10,this)">
+
+            I'm listening 👀
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SCREEN 10
+===================================================== -->
+
+<div class="screen hidden" id="screen10">
+
+    <div class="big">👀</div>
+
+    <h2>
+        Okay. Your turn.
+    </h2>
+
+
+    <p>
+
+        No more questions.
+
+        <br>
+
+        No more investigation.
+
+        <br><br>
+
+        Just tell me...
+
+        <br><br>
+
+        <strong>
+            What did you want to talk about?
+        </strong>
+
+    </p>
+
+
+    <div class="buttons">
+
+        <button
+            class="main-btn"
+            onclick="finish(this)">
+
+            Okay... 👀
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<div
+    class="screen hidden"
+    id="finalScreen">
+
+
+    <div class="big">
+        ❤️
+    </div>
+
+
+    <h2>
+        I'm listening.
+    </h2>
+
+
+    <p>
+
+        Now you can finally
+        explain yourself. 😂
+
+        <br><br>
+
+        Take your time.
+
+    </p>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   BACKGROUND PARTICLES
+===================================================== */
+
+const particleBox =
+    document.getElementById(
+        "particles"
+    );
+
+
+const symbols = [
+    "❤️",
+    "💕",
+    "✨",
+    "·"
+];
+
+
+function createParticle() {
+
+    const p =
+        document.createElement(
+            "div"
+        );
+
+
+    p.className =
+        "particle";
+
+
+    p.textContent =
+        symbols[
+            Math.floor(
+                Math.random() *
+                symbols.length
+            )
+        ];
+
+
+    p.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+
+    p.style.fontSize =
+        (
+            12 +
+            Math.random() * 17
+        ) +
+        "px";
+
+
+    p.style.animationDuration =
+        (
+            6 +
+            Math.random() * 7
+        ) +
+        "s";
+
+
+    particleBox.appendChild(p);
+
+
+    setTimeout(
+        () => p.remove(),
+        14000
+    );
+}
+
+
+setInterval(
+    createParticle,
+    800
+);
+
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function go(
+    number,
+    button
+) {
+
+
+    if (button) {
+
+        createSparks(button);
+
+    }
+
+
+    setTimeout(
+        () => {
+
+
+            document
+                .querySelectorAll(".screen")
+                .forEach(
+                    screen =>
+                        screen.classList
+                            .add("hidden")
+                );
+
+
+            const next =
+                document.getElementById(
+                    "screen" + number
+                );
+
+
+            next.classList
+                .remove("hidden");
+
+
+            next.style.animation =
+                "none";
+
+
+            void next.offsetWidth;
+
+
+            next.style.animation =
+                "screenIn .38s ease";
+
+
+        },
+        160
+    );
+
+}
+
+
+
+/* =====================================================
+   BUTTON SPARKS
+===================================================== */
+
+function createSparks(button) {
+
+
+    const rect =
+        button.getBoundingClientRect();
+
+
+    const x =
+        rect.left +
+        rect.width / 2;
+
+
+    const y =
+        rect.top +
+        rect.height / 2;
+
+
+    for (
+        let i = 0;
+        i < 8;
+        i++
+    ) {
+
+
+        const spark =
+            document.createElement(
+                "div"
+            );
+
+
+        spark.className =
+            "spark";
+
+
+        spark.style.left =
+            x + "px";
+
+
+        spark.style.top =
+            y + "px";
+
+
+        spark.style.setProperty(
+            "--dx",
+            (
+                (Math.random() - .5)
+                * 90
+            ) +
+            "px"
+        );
+
+
+        spark.style.setProperty(
+            "--dy",
+            (
+                (Math.random() - .5)
+                * 70
+            ) +
+            "px"
+        );
+
+
+        spark.style.background =
+            i % 2 === 0
+                ? "#ff6e9e"
+                : "#ffd166";
+
+
+        document.body
+            .appendChild(spark);
+
+
+        setTimeout(
+            () => spark.remove(),
+            600
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   FIND THE BITCH
+===================================================== */
+
+let gameFinished = false;
+
+
+function chooseLady(button) {
+
+
+    if (gameFinished) {
+        return;
+    }
+
+
+    gameFinished = true;
+
+
+    /* Highlight selected */
+
+    button.classList
+        .add("selected");
+
+
+    createSparks(button);
+
+
+    /* Disable all ladies */
+
+    document
+        .querySelectorAll(".lady")
+        .forEach(
+            lady => {
+                lady.style
+                    .pointerEvents =
+                    "none";
+            }
+        );
+
+
+    const result =
+        document.getElementById(
+            "gameResult"
+        );
+
+
+    /* Small dramatic pause */
+
+    result.innerHTML =
+        "Hmm...<br>let me check...";
+
+
+
+    setTimeout(
+        () => {
+
+
+            result.innerHTML = `
+
+                <span>
+                    IT'S YOU, BITCH 😂
+                </span>
+
+                <span class="game-sub">
+                    I knew it.
+                </span>
+
+            `;
+
+
+            /* More little particles */
+
+            for (
+                let i = 0;
+                i < 16;
+                i++
+            ) {
+
+                setTimeout(
+                    createParticle,
+                    i * 35
+                );
+
+            }
+
+
+        },
+        850
+    );
+
+
+    /*
+    Do NOT move too quickly.
+
+    Let her see the joke.
+    */
+
+    setTimeout(
+        () => {
+
+            gameFinished = false;
+
+            go(6);
+
+        },
+        3300
+    );
+
+}
+
+
+
+/* =====================================================
+   GIVE UP
+===================================================== */
+
+function giveUp(button) {
+
+
+    createSparks(button);
+
+
+    const original =
+        button.textContent;
+
+
+    button.textContent =
+        "You gave up 😂";
+
+
+    setTimeout(
+        () => {
+
+            button.textContent =
+                original;
+
+        },
+        1400
+    );
+
+}
+
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+function finish(button) {
+
+
+    createSparks(button);
+
+
+    setTimeout(
+        () => {
+
+
+            document
+                .querySelectorAll(".screen")
+                .forEach(
+                    screen =>
+                        screen.classList
+                            .add("hidden")
+                );
+
+
+            document
+                .getElementById(
+                    "finalScreen"
+                )
+                .classList
+                .remove("hidden");
+
+
+        },
+        160
+    );
+
+}
+
+
+
+/* =====================================================
+   RUNAWAY SHOW IG USERNAME
+===================================================== */
+
+
+const revealArea =
+    document.getElementById(
+        "revealArea"
+    );
+
+
+const revealButton =
+    document.getElementById(
+        "revealBtn"
+    );
+
+
+let pointerX = null;
+
+let pointerY = null;
+
+let lastMove = 0;
+
+
+/*
+Initial position.
+*/
+
+function resetReveal() {
+
+
+    revealButton.style.left =
+        "50%";
+
+
+    revealButton.style.top =
+        "50%";
+
+
+    revealButton.style.transform =
+        "translate(-50%, -50%)";
+
+}
+
+
+resetReveal();
+
+
+
+/*
+Move the button to a location
+far away from the cursor.
+*/
+
+function moveReveal() {
+
+
+    const now =
+        performance.now();
+
+
+    if (
+        now - lastMove < 70
+    ) {
+
+        return;
+
+    }
+
+
+    lastMove = now;
+
+
+    const area =
+        revealArea.getBoundingClientRect();
+
+
+    const width =
+        revealButton.offsetWidth;
+
+
+    const height =
+        revealButton.offsetHeight;
+
+
+    const padding = 8;
+
+
+    let bestX = 0;
+
+    let bestY = 0;
+
+    let bestDistance = -1;
+
+
+
+    /*
+    Try MANY possible positions.
+
+    Pick the one farthest from
+    the cursor.
+    */
+
+    for (
+        let i = 0;
+        i < 50;
+        i++
+    ) {
+
+
+        const x =
+            padding +
+            Math.random() *
+            Math.max(
+                1,
+                area.width -
+                width -
+                padding * 2
+            );
+
+
+        const y =
+            padding +
+            Math.random() *
+            Math.max(
+                1,
+                area.height -
+                height -
+                padding * 2
+            );
+
+
+        if (
+            pointerX === null ||
+            pointerY === null
+        ) {
+
+
+            bestX = x;
+
+            bestY = y;
+
+            break;
+
+        }
+
+
+        const centerX =
+            area.left +
+            x +
+            width / 2;
+
+
+        const centerY =
+            area.top +
+            y +
+            height / 2;
+
+
+        const distance =
+            Math.hypot(
+                pointerX -
+                centerX,
+
+                pointerY -
+                centerY
+            );
+
+
+        if (
+            distance >
+            bestDistance
+        ) {
+
+
+            bestDistance =
+                distance;
+
+
+            bestX = x;
+
+            bestY = y;
+
+        }
+
+    }
+
+
+    revealButton.style.left =
+        bestX + "px";
+
+
+    revealButton.style.top =
+        bestY + "px";
+
+
+    revealButton.style.transform =
+        "none";
+
+
+    revealButton.style.filter =
+        "brightness(1.2)";
+
+
+    setTimeout(
+        () => {
+
+            revealButton.style.filter =
+                "brightness(1)";
+
+        },
+        120
+    );
+
+}
+
+
+
+/*
+Track cursor inside the area.
+*/
+
+revealArea.addEventListener(
+    "pointermove",
+    function(event) {
+
+
+        pointerX =
+            event.clientX;
+
+
+        pointerY =
+            event.clientY;
+
+
+        const rect =
+            revealButton
+                .getBoundingClientRect();
+
+
+        const centerX =
+            rect.left +
+            rect.width / 2;
+
+
+        const centerY =
+            rect.top +
+            rect.height / 2;
+
+
+        const distance =
+            Math.hypot(
+
+                pointerX -
+                centerX,
+
+                pointerY -
+                centerY
+
+            );
+
+
+        /*
+        HUGE safety zone.
+
+        It runs before the cursor
+        can actually touch it.
+        */
+
+        if (
+            distance < 220
+        ) {
+
+            moveReveal();
+
+        }
+
+    }
+);
+
+
+
+/*
+Phone / touch.
+
+Touching the area makes
+the button escape.
+*/
+
+revealArea.addEventListener(
+    "pointerdown",
+    function(event) {
+
+
+        pointerX =
+            event.clientX;
+
+
+        pointerY =
+            event.clientY;
+
+
+        moveReveal();
+
+    }
+);
+
+
+</script>
+
+</body>
+</html>
